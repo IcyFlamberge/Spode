@@ -1,7 +1,7 @@
 # Third-Party Notices
 
-Spode is proprietary software (see `LICENSE`). It includes or uses the
-following third-party components, which remain under their own licenses.
+Spode is licensed under the MIT License (see `LICENSE`). It includes or uses
+the following third-party components, which remain under their own licenses.
 
 ## ModAPI.DLLInjector.dll
 
@@ -26,9 +26,10 @@ Spode is built with .NET 8 and WPF, which are provided by Microsoft under their
 respective licenses. See the .NET runtime and WPF license terms distributed
 with the .NET SDK/runtime.
 
-## MIT License text
+## MIT License text for third-party components
 
-The following MIT text applies to the MIT-licensed components listed above:
+The following MIT text applies to the MIT-licensed third-party components
+listed above:
 
 ```text
 MIT License
@@ -53,4 +54,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-```
