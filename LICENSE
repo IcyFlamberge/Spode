@@ -1,0 +1,128 @@
+SPODE PROPRIETARY LICENSE 1.0
+Copyright (c) 2026 Dalk12. All rights reserved.
+
+This is a proprietary, source-available license. It is not an open-source
+license. By installing, copying, or using the Software, you agree to be bound
+by this License. If you do not agree, do not install or use the Software.
+
+1. DEFINITIONS
+
+"Software" means the Spode application, including its source code, object
+code, compiled binaries, assets, documentation, logo, name, and any updates or
+modifications provided by the Licensor.
+
+"Licensor" means Dalk12, the author and copyright holder of the Software.
+
+"Licensee" means the individual or legal entity installing or using the
+Software.
+
+2. GRANT OF LICENSE
+
+Subject to the terms of this License, the Licensor grants the Licensee a
+limited, non-exclusive, non-transferable, non-sublicensable, revocable,
+royalty-free license to install and use the Software for personal or
+commercial purposes.
+
+This License does not grant any ownership rights in the Software.
+
+3. RESTRICTIONS
+
+The Licensee shall not:
+
+(a) copy, reproduce, publish, distribute, share, upload, sublicense, sell,
+    rent, lease, lend, or otherwise make the Software or any part of it
+    available to any third party, except for copying strictly necessary to
+    install and run the Software on devices owned or controlled by the
+    Licensee;
+
+(b) modify, adapt, translate, create derivative works of, fork, or use the
+    Software as the basis of another product or project;
+
+(c) reverse engineer, decompile, disassemble, or attempt to derive the source
+    code of the Software, except to the extent expressly permitted by
+    mandatory applicable law;
+
+(d) remove, alter, or obscure any copyright, license, or proprietary notice
+    contained in the Software;
+
+(e) use the Spode name, logo, or branding to endorse, promote, or represent
+    any product, service, or project without the Licensor's prior written
+    permission;
+
+(f) use the Software in violation of applicable law or the rights of any third
+    party.
+
+4. SOURCE CODE
+
+If the source code is made available, such access is provided for reference
+and transparency only. No right to copy, modify, distribute, sublicense, or
+create derivative works from the source code is granted. The restrictions in
+Section 3 apply fully to the source code.
+
+5. THIRD-PARTY COMPONENTS
+
+The Software includes or uses third-party components that are licensed under
+their own terms, including the MIT License. Those components are not covered
+by this proprietary License. Their copyright notices and license texts are
+listed in THIRD-PARTY-NOTICES.md and in the relevant third-party directories.
+If this License conflicts with a third-party license, the third-party license
+controls for that component.
+
+6. MODS AND GAME CONTENT
+
+Spode is a mod manager. It does not create mods. Third-party mods, game files,
+assets, and other content managed by the Software are not part of the Software
+and are governed by their own authors' licenses. The Licensor does not grant
+any rights to such content and is not responsible for it.
+
+7. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. THE LICENSOR
+DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE, UNINTERRUPTED, OR
+COMPATIBLE WITH ANY PARTICULAR GAME VERSION, MOD, OR SYSTEM CONFIGURATION.
+
+8. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSOR SHALL NOT BE
+LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE
+DAMAGES, OR FOR ANY LOSS OF DATA, GAME FILES, SAVE FILES, PROFITS, OR
+BUSINESS, ARISING OUT OF OR RELATED TO THE SOFTWARE OR THIS LICENSE, EVEN IF
+THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+9. TERMINATION
+
+This License terminates automatically if the Licensee breaches any term of
+this License. Upon termination, the Licensee must stop using the Software and
+delete all copies in their possession or control. Sections 3, 4, 5, 6, 7, 8,
+and 10 survive termination.
+
+10. GOVERNING LAW
+
+This License is governed by the laws of the Licensor's country of residence,
+without regard to conflict-of-law principles. Any dispute shall be subject to
+the exclusive jurisdiction of the courts of that country, unless mandatory
+local law provides otherwise.
+
+11. GENERAL
+
+This License is the entire agreement between the parties regarding the
+Software. If any provision is held unenforceable, the remaining provisions
+remain in effect. Failure to enforce a provision is not a waiver. The Licensor
+may update this License for future versions of the Software; the version
+accepted with a given release remains applicable to that release.
+
+12. AI / MACHINE LEARNING
+
+No license is granted to use the Software, its source code, documentation, or
+assets for training, fine-tuning, evaluating, or improving artificial
+intelligence or machine-learning models, or for inclusion in any dataset used
+for those purposes, without the Licensor's prior written permission. This
+restriction is in addition to the restrictions in Section 3.
+
+13. CONTACT
+
+For permission requests, licensing questions, AI/ML licensing requests, or
+reports of unauthorized distribution, contact the Licensor through the
+official Spode distribution page or repository.
