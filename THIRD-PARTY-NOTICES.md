@@ -1,7 +1,7 @@
 # Third-Party Notices
 
-Spode is licensed under the MIT License (see `LICENSE`). It includes or uses
-the following third-party components, which remain under their own licenses.
+Spode is MIT-licensed (see `LICENSE`). It includes or uses the following
+third-party components, which remain under their own licenses.
 
 ## ModAPI.DLLInjector.dll
 
@@ -13,12 +13,19 @@ the following third-party components, which remain under their own licenses.
 
 ## Spore ModAPI SDK / core DLLs
 
-Spode downloads the ModAPI core DLLs from the official repository at runtime:
+- Source: <https://github.com/Spore-Community/Spore-ModAPI>
+- Copyright (C) 2019 Eric Mor and contributors
+- License: **GNU General Public License v3.0** (stated in the source file headers)
+- GPL text: <https://www.gnu.org/licenses/gpl-3.0.txt>
 
-- <https://github.com/Spore-Community/Spore-ModAPI>
+Spode does **not** bundle or redistribute the ModAPI core DLLs. At the user's
+request, Spode downloads them from the official GitHub releases into the local
+ModAPI cache and injects them into Spore. They are not covered by Spode's MIT
+licence.
 
-Those files are not redistributed inside Spode. They remain governed by the
-terms of their upstream repository.
+If you redistribute the ModAPI core DLLs yourself, you must comply with GPLv3:
+provide the corresponding source, the GPL text, and the copyright notices, and
+do not add restrictions that conflict with GPLv3.
 
 ## .NET 8 / WPF
 
@@ -26,10 +33,9 @@ Spode is built with .NET 8 and WPF, which are provided by Microsoft under their
 respective licenses. See the .NET runtime and WPF license terms distributed
 with the .NET SDK/runtime.
 
-## MIT License text for third-party components
+## MIT License text
 
-The following MIT text applies to the MIT-licensed third-party components
-listed above:
+The following MIT text applies to the MIT-licensed components listed above:
 
 ```text
 MIT License
@@ -54,3 +60,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```

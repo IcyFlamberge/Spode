@@ -1,0 +1,30 @@
+<!--
+  Obfuscar template for Spode.
+
+  This is a conservative starting point for a WPF application:
+  XAML/BAML and data bindings rely on public type and property names, so the
+  public API is kept intact. Private/internal members are renamed.
+
+  Test the obfuscated build thoroughly. If your obfuscator has a WPF-specific
+  mode, prefer it over this template.
+
+  Usage example:
+    obfuscar.console.exe tools\obfuscar.template.xml
+
+  InPath/OutPath are relative to the directory where the obfuscator is run.
+  Adjust them to your publish folder.
+-->
+<Obfuscator>
+  <Var name="InPath" value="publish\Spode" />
+  <Var name="OutPath" value="publish\Spode-obfuscated" />
+  <Var name="KeepPublicApi" value="true" />
+  <Var name="HidePrivateApi" value="true" />
+  <Var name="RenameProperties" value="false" />
+  <Var name="RenameEvents" value="false" />
+  <Var name="RenameFields" value="false" />
+  <Var name="UseUnicodeNames" value="false" />
+  <Var name="ReuseNames" value="false" />
+  <Var name="HideStrings" value="false" />
+  <Module file="$(InPath)\Spode.Core.dll" />
+  <Module file="$(InPath)\Spode.dll" />
+</Obfuscator>

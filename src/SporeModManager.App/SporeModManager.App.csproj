@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <!-- Spore and ModAPI.DLLInjector.dll are 32-bit. -->
+    <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Spode</AssemblyName>
+    <RootNamespace>SporeModManager.App</RootNamespace>
+    <Version>1.0.0</Version>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <AssemblyTitle>Spode</AssemblyTitle>
+    <Product>Spode</Product>
+    <Company>Dalk12</Company>
+    <Authors>Dalk12</Authors>
+    <Copyright>Copyright (c) 2026 Dalk12</Copyright>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Deterministic>true</Deterministic>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SporeModManager.Core\SporeModManager.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="lib\ModAPI.DLLInjector.dll" LogicalName="Spode.Injector.ModAPI.DLLInjector.dll" />
+    <EmbeddedResource Include="..\..\LICENSE" LogicalName="Spode.Legal.LICENSE" />
+    <EmbeddedResource Include="..\..\THIRD-PARTY-NOTICES.md" LogicalName="Spode.Legal.THIRD-PARTY-NOTICES.md" />
+    <Resource Include="Assets\spode-logo.png" />
+  </ItemGroup>
+</Project>

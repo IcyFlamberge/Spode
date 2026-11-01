@@ -1,0 +1,359 @@
+﻿<Window x:Class="SporeModManager.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Spode"
+        Width="1040" Height="720" MinWidth="880" MinHeight="560"
+        WindowStartupLocation="CenterScreen"
+        Icon="Assets/spode-logo.png"
+        FontFamily="Segoe UI" FontSize="12"
+        Background="#F3F3F3">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="12,10,12,4">
+            <Image Source="Assets/spode-logo.png" Width="44" Height="44" Stretch="Uniform"/>
+            <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock Text="Spode" FontSize="22" FontWeight="SemiBold"/>
+                <TextBlock Text="Spore Mod Manager" FontSize="11" Foreground="#666"/>
+            </StackPanel>
+        </StackPanel>
+
+    <TabControl x:Name="Tabs" Grid.Row="1" Margin="8" SelectionChanged="Tabs_SelectionChanged">
+
+        <TabItem Header="Mods">
+            <Grid Margin="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+                    <TextBlock Text="Installed mods" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <Button Content="Refresh" Command="{Binding Mods.RefreshCommand}" Margin="16,0,0,0" Padding="12,4"/>
+                </StackPanel>
+
+                <GroupBox Grid.Row="1" Header="Install mods" Padding="8" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock Text="Package target" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <ComboBox ItemsSource="{Binding Install.PackageTargets}" SelectedItem="{Binding Install.PackageTarget}" Width="160"/>
+                            <Button Content="Select and install" Command="{Binding Install.InstallFilesCommand}" Padding="16,4" Margin="12,0,0,0"/>
+                            <TextBlock Text="Select .package or .sporemod files." Foreground="#666" VerticalAlignment="Center" Margin="14,0,0,0"/>
+                        </StackPanel>
+                        <ProgressBar Grid.Row="1" Value="{Binding Install.Progress}" Maximum="1" Height="12" Margin="0,8,0,0"/>
+                        <TextBlock Grid.Row="2" Text="{Binding Install.Status}" Foreground="#555" Margin="0,4,0,0"/>
+                    </Grid>
+                </GroupBox>
+
+                <ListView Grid.Row="2" ItemsSource="{Binding Mods.Mods}" SelectedItem="{Binding Mods.SelectedMod}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding DisplayName}" Width="230"/>
+                            <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" Width="80"/>
+                            <GridViewColumn Header="Type" DisplayMemberBinding="{Binding ModType}" Width="90"/>
+                            <GridViewColumn Header="Author" DisplayMemberBinding="{Binding Author}" Width="140"/>
+                            <GridViewColumn Header="Unique" DisplayMemberBinding="{Binding Unique}" Width="180"/>
+                            <GridViewColumn Header="Files" DisplayMemberBinding="{Binding InstalledFiles.Count}" Width="50"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,0">
+                    <Button Content="Uninstall selected" Command="{Binding Mods.UninstallSelectedCommand}" Padding="12,4"/>
+                    <TextBlock Text="{Binding Mods.Status}" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="#555"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Profiles">
+            <Grid Margin="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Grid.Column="0" Header="Profiles" Padding="8">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Bottom">
+                            <TextBox Text="{Binding Profiles.NewProfileName, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,4"/>
+                            <Button Content="Create profile" Command="{Binding Profiles.CreateProfileCommand}" Padding="12,4"/>
+                        </StackPanel>
+                        <ListBox ItemsSource="{Binding Profiles.Profiles}" SelectedItem="{Binding Profiles.SelectedProfile}" Margin="0,0,0,8">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+                                        <TextBlock Foreground="#666" FontSize="11">
+                                            <Run Text="{Binding Mods.Count, Mode=OneWay}"/>
+                                            <Run Text=" mods"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DockPanel>
+                </GroupBox>
+
+                <GroupBox Grid.Column="2" Header="Profile" Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Name" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Text="{Binding Profiles.ProfileName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,0"/>
+                            <Button Grid.Column="2" Content="Save" Command="{Binding Profiles.SaveProfileCommand}" Padding="12,4" Margin="0,0,8,0"/>
+                            <Button Grid.Column="3" Content="Delete" Command="{Binding Profiles.DeleteProfileCommand}" Padding="12,4"/>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="ModAPI" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding Profiles.ModApiTags}" SelectedItem="{Binding Profiles.SelectedModApiTag}"/>
+                        </Grid>
+
+                        <GroupBox Grid.Row="2" Header="Mods in profile" Padding="6">
+                            <ListBox ItemsSource="{Binding Profiles.ProfileMods}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox IsChecked="{Binding Enabled}" VerticalAlignment="Center"/>
+                                            <StackPanel Grid.Column="1" Margin="8,0,0,0" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                                <TextBlock FontSize="10" Foreground="#666">
+                                                    <Run Text="{Binding Version, Mode=OneWay}"/>
+                                                    <Run Text=" "/>
+                                                    <Run Text="{Binding Type, Mode=OneWay}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <Button Grid.Column="2" Content="Remove"
+                                                    Command="{Binding DataContext.Profiles.RemoveModCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}"
+                                                    Padding="10,2"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </GroupBox>
+
+                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="Package target" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <ComboBox ItemsSource="{Binding Profiles.PackageTargets}" SelectedItem="{Binding Profiles.PackageTarget}" Width="150" Margin="0,0,8,0"/>
+                            <Button Content="Add mod" Command="{Binding Profiles.AddModCommand}" Padding="12,4" Margin="0,0,8,0"/>
+                            <Button Content="Activate profile" Command="{Binding Profiles.ActivateCommand}" Padding="12,4" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding Profiles.Status}" VerticalAlignment="Center" Foreground="#555" TextWrapping="Wrap" MaxWidth="400"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="ModAPI">
+            <Grid Margin="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <GroupBox Grid.Row="0" Header="ModAPI version" Padding="10">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="240"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Release" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding ModApi.Releases}" SelectedItem="{Binding ModApi.SelectedRelease}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding TagName}"/>
+                                            <TextBlock Text="{Binding LocalStatus}" Foreground="#2E7D32" FontWeight="SemiBold" Margin="8,0,0,0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button Grid.Column="2" Content="Reload" Command="{Binding ModApi.LoadCommand}" Margin="8,0,0,0" Padding="12,4"/>
+                            <Button Grid.Column="3" Content="Download" Command="{Binding ModApi.DownloadCommand}" Margin="8,0,0,0" Padding="12,4"/>
+                            <Button Grid.Column="4" Content="Apply to launcher" Command="{Binding ModApi.InstallSelectedCommand}" Margin="8,0,0,0" Padding="12,4"/>
+                        </Grid>
+                        <TextBlock Text="Green labels mark versions already present on this PC: Installed = applied to coreLibs, Downloaded = kept in the local cache."
+                                   Foreground="#666" Margin="0,8,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <Grid Grid.Row="1" Margin="0,8,0,0">
+                    <ListBox ItemsSource="{Binding ModApi.Releases}" SelectedItem="{Binding ModApi.SelectedRelease}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="130"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding TagName}" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}" Foreground="#555" Margin="8,0,0,0"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding PublishedAt, StringFormat={}{0:yyyy-MM-dd}}" Foreground="#777"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding LocalStatus}" Foreground="#2E7D32" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <TextBlock Text="{Binding ModApi.Status}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#777" TextWrapping="Wrap" MaxWidth="520" TextAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModApi.Releases.Count, Mode=OneWay}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+
+                <StackPanel Grid.Row="2" Margin="0,8,0,0">
+                    <Grid>
+                        <ProgressBar Value="{Binding ModApi.Progress}" Maximum="1" Height="16"/>
+                        <TextBlock Text="{Binding ModApi.ProgressText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Foreground="#333"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                        <TextBlock Text="{Binding ModApi.Status}" Foreground="#555"/>
+                        <TextBlock Text="{Binding ModApi.InstalledTag, StringFormat=Installed: {0}}" Foreground="#777" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Launch">
+            <Grid Margin="12">
+                <GroupBox Header="Launch Spore" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Profiles.ActiveProfileName, StringFormat=Active profile: {0}}" Margin="0,0,0,10"/>
+                        <Button Content="Launch Spore" Command="{Binding Launch.LaunchCommand}" HorizontalAlignment="Left" Padding="24,8"/>
+                        <TextBlock Text="{Binding Launch.Status}" Margin="0,10,0,0" Foreground="#555"/>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Settings">
+            <Grid Margin="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <GroupBox Grid.Row="0" Header="Game executable" Padding="10" Margin="0,0,0,10">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Path" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Text="{Binding Settings.GameExecutable, Mode=OneWay}" IsReadOnly="True" Margin="0,0,8,0"/>
+                            <Button Grid.Column="2" Content="Select SporeApp.exe" Command="{Binding Settings.BrowseCommand}" Padding="12,4"/>
+                        </Grid>
+                        <Grid Margin="0,8,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Build" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding Settings.VersionOptions}" SelectedItem="{Binding Settings.SelectedVersionOption}" Width="220"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Settings.VersionInfo}" Foreground="#555" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Grid.Row="1" Header="Resolved paths" Padding="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Sporebin" Foreground="#555"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Settings.SporeBinPath}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="DataEP1" Foreground="#555" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Settings.GaDataPath}" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Data" Foreground="#555" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Settings.SporeDataPath}" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Launcher folder" Foreground="#555" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Settings.LauncherPath}" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Mods library" Foreground="#555" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Settings.ModsLibraryPath}" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Settings.Status}" Foreground="#555" Margin="0,8,0,0"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="About">
+            <Grid Margin="12">
+                <GroupBox Header="About" Padding="20">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Image Source="Assets/spode-logo.png" Width="160" Height="160" Stretch="Uniform"/>
+                        <TextBlock Text="{Binding About.AppName}" FontSize="32" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,14,0,0"/>
+                        <TextBlock Text="{Binding About.Subtitle}" FontSize="14" Foreground="#666" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                        <TextBlock Text="{Binding About.Version, StringFormat=Version {0}}" Foreground="#666" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                        <TextBlock Text="{Binding About.Author, StringFormat=Author: {0}}" Foreground="#666" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                        <Separator Margin="0,18,0,14" Width="520"/>
+                        <TextBlock Text="{Binding About.ThanksTitle}" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding About.Thanks}" TextWrapping="Wrap" MaxWidth="580" TextAlignment="Center" Margin="0,8,0,0" Foreground="#444"/>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+
+    </TabControl>
+    </Grid>
+</Window>
